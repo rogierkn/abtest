@@ -1,0 +1,19 @@
+FROM php:7.2.6-fpm
+
+# Install PHP extensions
+
+RUN apt-get update && apt-get install -y libmcrypt-dev mysql-client libicu-dev nano libpng-dev git unzip && docker-php-ext-install mcrypt pdo_mysql intl gd zip
+
+
+
+# Enable PHP error log to docker log
+RUN echo "php_admin_value[error_log] = /dev/stderr" >> /usr/local/etc/php-fpm.conf
+
+# install composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN mv composer.phar /usr/local/bin/composer
+
+WORKDIR /var/www
+

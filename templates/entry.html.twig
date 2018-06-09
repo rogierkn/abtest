@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div class="ui divider hidden"></div>
+    <div class="ui divider hidden"></div>
+    <div class="ui grid centered container">
+        <div class="four wide column">
+            <h1 class="header">Hallo!</h1>
+            <p>
+                Alvast bedankt voor het meedoen aan dit onderzoek.<br/>
+                <br/>
+                <strong>Het is belangrijk dat je geluid op een normaal volume staat, denk aan het volume van wat achtergrond muziek.</strong>
+                <br/><br/>
+                Graag in het formulier je leeftijd invullen en daarna op "doorgaan" klikken.
+            </p>
+        </div>
+        <div class="four wide column">
+            <div class="ui divider hidden"></div>
+            <div class="ui divider hidden"></div>
+            <form action="{{  path('start-reading') }}" method="post">
+
+                <div class="ui input labeled">
+                    <div class="ui label">
+                        Leeftijd
+                    </div>
+                    <input type="number" step="1" name="age" placeholder="25" required>
+                </div>
+                <div class="ui divider hidden"></div>
+                <button class="ui button blue">
+                    Doorgaan
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+{% endblock %}

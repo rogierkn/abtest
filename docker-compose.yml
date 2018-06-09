@@ -1,0 +1,42 @@
+version: '3'
+services:
+  nginx:
+    container_name: ab_web
+    build:
+      context: ./docker/config/
+      dockerfile: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www:cached
+    links:
+        - php
+
+  php:
+    container_name: ab_php
+    build:
+      context: ./docker/config/
+      dockerfile: php
+    volumes:
+      - .:/var/www:cached
+
+  database:
+    container_name: ab_db
+    image: mysql:5.7
+    volumes:
+      - ./docker/database:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "abtest"
+      MYSQL_DATABASE: "abtest"  
+
+  phpmyadmin:
+    container_name: ab_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    links:
+      - database:db
+
+
