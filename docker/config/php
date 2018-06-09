@@ -2,7 +2,7 @@ FROM php:7.2.6-fpm
 
 # Install PHP extensions
 
-RUN apt-get update && apt-get install -y libmcrypt-dev mysql-client libicu-dev nano libpng-dev git unzip && docker-php-ext-install mcrypt pdo_mysql intl gd zip
+RUN apt-get update && apt-get install -y mysql-client libicu-dev nano libpng-dev git unzip && docker-php-ext-install pdo_mysql intl gd zip
 
 
 
