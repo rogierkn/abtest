@@ -39,6 +39,7 @@ class Results
         $participants = $this->entityManager->getRepository('App:Participant')->findAll();
 
         $participants = array_filter($participants, function (Participant $participant) {
+
             return !($participant->getStartTime() === null || $participant->getEndTime() === null);
         });
 
