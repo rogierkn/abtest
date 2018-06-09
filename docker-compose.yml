@@ -19,6 +19,8 @@ services:
       dockerfile: php
     volumes:
       - .:/var/www:cached
+    links:
+      - database
 
   database:
     container_name: ab_db
