@@ -65,19 +65,25 @@ class Results
 
     private function avgAge(array $participants): int
     {
+        if(\count($participants) === 0) {
+            return 0;
+        }
         return array_reduce($participants, function ($sum, Participant $participant) {
             $sum += $participant->getAge();
 
             return $sum;
-        }, 0);
+            }, 0)/ \count($participants);
     }
 
     private function avgDuration(array $participants): int
     {
+        if(\count($participants) === 0) {
+            return 0;
+        }
         return array_reduce($participants, function ($sum, Participant $participant) {
             $sum += $participant->getDuration();
 
             return $sum;
-        }, 0);
+        }, 0)/ \count($participants);
     }
 }
