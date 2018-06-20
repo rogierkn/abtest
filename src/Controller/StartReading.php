@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
 /**
- * @Route(path="/start", name="start-reading", methods={"POST"})
+ * @Route(path="/start", name="start-reading", methods={"POST", "GET"})
  */
 class StartReading
 {
