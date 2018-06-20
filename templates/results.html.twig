@@ -1,68 +1,74 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"/>
+</head>
+<body>
 
+<div class="ui divider hidden"></div>
+<div class="ui divider hidden"></div>
+<div class="ui divider hidden"></div>
+<div class="ui grid centered container">
 
-{% block body %}
-    <div class="ui divider hidden"></div>
-    <div class="ui divider hidden"></div>
-    <div class="ui divider hidden"></div>
-    <div class="ui grid centered container">
+    <div class="ten column wide">
 
-        <div class="ten column wide">
-
-            <div class="ui grid two column">
-                <div class="column">
-                    <h4 class="ui header">Groep A</h4>
-                    <ul>
-                        <li>Gemiddelde leeftijd: {{ a.age }}</li>
-                        <li>Gemiddelde leestijd: {{ a.duration}}</li>
-                    </ul>
-                </div>
-                <div class="column">
-                    <h4 class="ui header">Groep B</h4>
-                    <ul>
-                        <li>Gemiddelde leeftijd: {{ b.age }}</li>
-                        <li>Gemiddelde leestijd: {{ b.duration}}</li>
-                    </ul>
-                </div>
+        <div class="ui grid two column">
+            <div class="column">
+                <h4 class="ui header">Groep A</h4>
+                <ul>
+                    <li>Gemiddelde leeftijd: {{ a.age }}</li>
+                    <li>Gemiddelde leestijd: {{ a.duration}}</li>
+                </ul>
             </div>
-
-            <div class="ui divider"></div>
-
-            <table class="ui table">
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>IP</th>
-                    <th>Leeftijd</th>
-                    <th>Starttijd</th>
-                    <th>Eindtijd</th>
-                    <th>Leestijd</th>
-                    <th>Groep (A = klassiek, B = pop)</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for participant in participants %}
-                    <tr>
-                        <td>{{ participant.id }}</td>
-                        <td>{{ participant.ip }}</td>
-                        <td>{{ participant.age }}</td>
-
-                        <td>{{ participant.startTime.format('d-m \\o\\m H:i:s') ?? '-' }}</td>
-
-                        <td>{{ participant.endTime.format('d-m \\o\\m H:i:s') ?? '-' }}</td>
-
-                        {% if participant.startTime is null or participant.endTime is null %}
-                            <td> -</td>
-                        {% else %}
-                            <td>{{ participant.duration }} seconden</td>
-                        {% endif %}
-                        <td>{{ participant.group }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-
+            <div class="column">
+                <h4 class="ui header">Groep B</h4>
+                <ul>
+                    <li>Gemiddelde leeftijd: {{ b.age }}</li>
+                    <li>Gemiddelde leestijd: {{ b.duration}}</li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-{% endblock %}
+        <div class="ui divider"></div>
+
+        <table class="ui table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>IP</th>
+                <th>Leeftijd</th>
+                <th>Starttijd</th>
+                <th>Eindtijd</th>
+                <th>Leestijd</th>
+                <th>Groep (A = klassiek, B = pop)</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for participant in participants %}
+                <tr>
+                    <td>{{ participant.id }}</td>
+                    <td>{{ participant.ip }}</td>
+                    <td>{{ participant.age }}</td>
+
+                    <td>{{ participant.startTime.format('d-m \\o\\m H:i:s') ?? '-' }}</td>
+
+                    <td>{{ participant.endTime.format('d-m \\o\\m H:i:s') ?? '-' }}</td>
+
+                    {% if participant.startTime is null or participant.endTime is null %}
+                        <td> -</td>
+                    {% else %}
+                        <td>{{ participant.duration }} seconden</td>
+                    {% endif %}
+                    <td>{{ participant.group }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
+
