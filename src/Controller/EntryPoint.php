@@ -40,15 +40,6 @@ class EntryPoint extends Controller
      */
     public function __invoke():Response
     {
-        if($this->hasAlreadyParticipated()) {
-            return new Response($this->twig->render('thanks.html.twig'));
-        }
-
         return new Response($this->twig->render('entry.html.twig'));
-    }
-
-    private function hasAlreadyParticipated():bool
-    {
-        return $this->session->has('participant_id');
     }
 }

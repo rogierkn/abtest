@@ -64,12 +64,12 @@ class StartReading
      */
     public function __invoke(): Response
     {
-        if (!$this->session->has('participant_id')) {
+//        if (!$this->session->has('participant_id')) {
             $participant = $this->participantCreator->createParticipant($this->request->get('age', 0));
             $this->session->set('participant_id', $participant->getId());
-        } else {
-            $participant = $this->entityManager->getRepository('App:Participant')->find($this->session->get('participant_id'));
-        }
+//        } else {
+//            $participant = $this->entityManager->getRepository('App:Participant')->find($this->session->get('participant_id'));
+//        }
 
         $this->startReading($participant);
 

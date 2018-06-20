@@ -145,6 +145,7 @@ class Participant
 
     public function getDuration():int
     {
-        return $this->endTime->diff($this->startTime)->s;
+        $diff = $this->endTime->diff($this->startTime);
+        return ($diff->i * 60) + $diff->s;
     }
 }
