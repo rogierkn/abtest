@@ -35,7 +35,7 @@ class ParticipantCreator
         $participant->setIp($this->request->getClientIp());
 
         $group = mt_rand(0, 1) < 0.5 ? 'A' : 'B';
-        if($this->request->get('group', null) !== null) {
+        if($this->request->get('group', null) !== null && \in_array($this->request->get('group'), ['A', 'B'])) {
             $group = $this->request->get('group');
         }
 
