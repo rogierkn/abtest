@@ -5,6 +5,7 @@ namespace App\Service;
 
 use App\Entity\Participant;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class ParticipantCreator
@@ -14,7 +15,7 @@ class ParticipantCreator
      */
     private $entityManager;
 
-    /** @var \Symfony\Component\HttpFoundation\Request  */
+    /** @var Request  */
     private $request;
 
     public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack)
@@ -32,7 +33,13 @@ class ParticipantCreator
         $participant->setName(md5(date('h-i-s ddmmyyyy')));
         $participant->setAge($age);
         $participant->setIp($this->request->getClientIp());
-        $participant->setGroup(mt_rand(0, 1) < 0.5 ? 'A' : 'B');
+
+        $group = mt_rand(0, 1) < 0.5 ? 'A' : 'B';
+        if($this->request->get('group', null) !== null) {
+            $group = $this->request->get('group');
+        }
+
+        $participant->setGroup($group);
 
 
         $this->entityManager->persist($participant);
